@@ -6,12 +6,12 @@ const insert = (animal) => conn.execute(
   );
 
   const findAll = () => conn.execute(
-   'SELECT * FROM adotedb.animal;',
+   'SELECT * FROM animal;',
   );
 
   const findById = async (productId) => {
     const [[product]] = await conn.execute(
-      'SELECT * FROM adotedb.animal WHERE id = ?',
+      'SELECT * FROM animal WHERE id = ?',
       [productId],
     );
     return product;
@@ -19,14 +19,14 @@ const insert = (animal) => conn.execute(
 
   const update = async (id, animal) => {
     await conn.execute(
-      `UPDATE adotedb.animal SET nome = ?, idade = ?,
+      `UPDATE animal SET nome = ?, idade = ?,
       foto = ?, descricao = ?, uf = ?, cidade = ? WHERE id = ?`,
       [animal.nome, animal.idade, animal.foto, animal.descricao, animal.uf, animal.cidade, id],
     );
   };
 
   const remove = async (id) => {
-    await conn.execute('DELETE FROM adotedb.animal WHERE id = (?)', [
+    await conn.execute('DELETE FROM animal WHERE id = (?)', [
       id,
     ]);
   };
