@@ -5,7 +5,7 @@ const routerAnimal = require('./routes/animalRouter');
 const app = express();
 
 const corsOptions = {
-    origin: 'http://127.0.0.1:5500',
+    origin: '*',
   };
 
 app.use(cors(corsOptions));
