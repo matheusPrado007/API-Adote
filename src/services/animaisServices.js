@@ -11,6 +11,11 @@ const insert = async (animal) => {
     return newAnimal;
 };
 
+const insertImg = async (animal) => {
+  const newAnimal = await animaisDB.insertImg(animal);
+  return newAnimal;
+};
+
 const findById = async (id) => {
     try {
       const animal = await animaisDB.findById(id);
@@ -63,4 +68,5 @@ module.exports = {
     findById,
     update,
     remove,
+    insertImg,
 };

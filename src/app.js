@@ -13,5 +13,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/animais', routerAnimal);
+app.use('/imagens', routerAnimal);
 
 module.exports = app;

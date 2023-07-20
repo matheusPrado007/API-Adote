@@ -46,6 +46,19 @@ const getAll = async (_req, res) => {
     }
   };
 
+  const insertImg = async (req, res) => {
+    const animal = req.body;
+    try {
+      const [result] = await animaisService.insertImg(animal);
+      res.status(CREATED).json({
+        message: `Img do animal cadastrada com sucesso com o id ${result.insertId}` });
+    } catch (err) {
+      console.log(err);
+      res.status(INTERNAL_SERVER_ERROR)
+      .json({ message: 'Ocorreu um erro ao cadastrar uma pessoa' });
+    }
+  };
+
   const remove = async (req, res) => {
     try {
       const { id } = req.params;
@@ -65,4 +78,5 @@ const getAll = async (_req, res) => {
     findById,
     update,
     remove,
+    insertImg,
   };

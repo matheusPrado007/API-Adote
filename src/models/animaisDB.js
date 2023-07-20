@@ -1,9 +1,25 @@
+const fs = require('fs');
 const conn = require('./db/connection');
 
-const insert = (animal) => conn.execute(
-    'INSERT INTO animal (nome, idade, foto, descricao, uf, cidade) VALUES (?, ?, ?, ?, ?, ?)',
-    [animal.nome, animal.idade, animal.foto, animal.descricao, animal.uf, animal.cidade],
-  );
+/// //
+
+const insertImg = (req) => {
+  const nomeImagem = req.file.originalname;
+  const tipoImagem = req.file.mimetype;
+  const tamanhoImagem = req.file.size;
+  const imagemBytes = req.file.buffer;
+
+  conn.execute('INSERT INTO imagens (nome, tipo, tamanho, imagem) VALUES (?, ?, ?, ?)',
+  [nomeImagem, tipoImagem, tamanhoImagem, imagemBytes]);
+};
+
+const insert = (animal) => {
+  const imagemBuffer = fs.readFileSync(animal.foto);
+  conn.execute(
+      'INSERT INTO animal (nome, idade, foto, descricao, uf, cidade) VALUES (?, ?, ?, ?, ?, ?)',
+      [animal.nome, animal.idade, imagemBuffer, animal.descricao, animal.uf, animal.cidade],
+    );
+};
 
   const findAll = () => conn.execute(
    'SELECT * FROM animal;',
@@ -37,4 +53,5 @@ module.exports = {
   update,
   findById,
   remove,
+  insertImg,
 };
