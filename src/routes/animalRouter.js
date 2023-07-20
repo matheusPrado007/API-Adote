@@ -10,7 +10,8 @@ const {
      } = require('../controllers/animaisController');
 const { validate } = require('../middlewares/validate');
 
-  const upload = multer();
+const storage = multer.memoryStorage();
+const upload = multer({ storage }).single('imagem');
 
 const router = express.Router();
 
@@ -20,7 +21,7 @@ router.get('/:id', validate, findById);
 
 // router.post('/', insert);
 
-router.post('/', upload.single('imagem'), (req, res) => insertImg(req, res));
+router.post('/', upload, (req, res) => insertImg(req, res));
 
 router.put('/:id', validate, update);
 

@@ -4,12 +4,12 @@ const conn = require('./db/connection');
 /// //
 
 const insertImg = (req) => {
-  const nomeImagem = req.file.originalname;
+  const nomeImagem = req.body.originalname;
   const tipoImagem = req.file.mimetype;
   const tamanhoImagem = req.file.size;
   const imagemBytes = req.file.buffer;
 
-  conn.execute('INSERT INTO imagens (nome, tipo, tamanho, imagem) VALUES (?, ?, ?, ?)',
+  conn.execute('INSERT INTO image (nome, tipo, tamanho, imagem) VALUES (?, ?, ?, ?)',
   [nomeImagem, tipoImagem, tamanhoImagem, imagemBytes]);
 };
 
