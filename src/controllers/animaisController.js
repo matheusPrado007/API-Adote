@@ -33,18 +33,18 @@ const getAll = async (_req, res) => {
     return res.status(OK_STATUS).json(message);
   };
 
-  const insert = async (req, res) => {
-    const animal = req.body;
-    try {
-      const [result] = await animaisService.insert(animal);
-      res.status(CREATED).json({
-        message: `animal cadastrada com sucesso com o id ${result.insertId}` });
-    } catch (err) {
-      console.log(err);
-      res.status(INTERNAL_SERVER_ERROR)
-      .json({ message: 'Ocorreu um erro ao cadastrar uma pessoa' });
-    }
-  };
+  // const insert = async (req, res) => {
+  //   const animal = req.body;
+  //   try {
+  //     const [result] = await animaisService.insert(animal);
+  //     res.status(CREATED).json({
+  //       message: `animal cadastrada com sucesso com o id ${result.insertId}` });
+  //   } catch (err) {
+  //     console.log(err);
+  //     res.status(INTERNAL_SERVER_ERROR)
+  //     .json({ message: 'Ocorreu um erro ao cadastrar uma pessoa' });
+  //   }
+  // };
 
   const insertImg = async (req, res) => {
     const animal = req.body;
@@ -55,7 +55,7 @@ const getAll = async (_req, res) => {
     } catch (err) {
       console.log(err);
       res.status(INTERNAL_SERVER_ERROR)
-      .json({ message: 'Ocorreu um erro ao cadastrar uma pessoa' });
+      .json({ message: 'Ocorreu um erro ao cadastrar um animal' });
     }
   };
 
@@ -74,7 +74,7 @@ const getAll = async (_req, res) => {
 
   module.exports = {
     getAll,
-    insert,
+    // insert,
     findById,
     update,
     remove,
